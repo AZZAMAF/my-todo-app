@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  /* Font yang tadi kita buat */
+  --font-sans: "Pixelify Sans", sans-serif;
+
+  /* --- DAFTAR WARNA KAMU --- */
+  
+  /* Baris Pertama (Main) */
+  --color-main-red: #B53834;
+  --color-main-cream: #FBFEED;
+  --color-main-lime: #AFF967;
+
+  /* Baris Kedua (Secondary) */
+  --color-sec-dark: #5B112D;
+  --color-sec-maroon: #9D072A;
+}
