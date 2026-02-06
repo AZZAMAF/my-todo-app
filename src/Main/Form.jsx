@@ -1,67 +1,69 @@
 import { useContext, useState } from "react";
 import AddButton from "../Components/AddButton";
-import { TodoDispatchContext } from "./TodoContext";
+import { TodoContext, TodoDispatchContext } from "./TodoContext";
 import Mood from "../Components/Mood";
 
 
 export default function Form() {
-    const [text, setText] = useState("")
+
     const dispatch = useContext(TodoDispatchContext)
+    const state = useContext(TodoContext)
 
-    function handleChange(e){
-        setText(e.target.value)
-    }
+    const text = state?.inputValue || "";
 
-    function handleClick(e){
-        setText('')
+    function handleClick(e) {
+        e.preventDefault()
+
+        if (!text || text.trim() === '') return;
+
         dispatch({
-            type:'ADD_NOTE',
-            text: text
-        })
-    }
+            type: 'ADD_TODO',
+            payload: text
+        });
+    } 
     return (
-        <>
+        <form onSubmit={handleClick}>
             {/* 4. CONTROL AREA (Pakai block agar absolute di dalamnya bebas) */}
-           
-                {/* pointer-events-none supaya container transparan ini gak ngehalangin klik */}
 
-                {/* Lingkaran Kiri (Logo M / Mood) */}
-                <div
-                    style={{ left: "830px", top: "795px" }}
-                    className="absolute pointer-events-auto"
-                >
-                    <Mood />
-                </div>
+            {/* pointer-events-none supaya container transparan ini gak ngehalangin klik */}
 
-                {/* Input Tengah (Koordinat manual supaya pas di lubang TV) */}
-                <div
-                    style={{ left: "210px", top: "840px" }}
-                    className="absolute pointer-events-auto"
-                >
-                    <div className="relative flex items-center">
-                        {/* Border Luar Input (untuk efek double border) */}
-                        <div className="absolute  bg-white border-[4px] border-[#BD202E] rounded-full px-2 py-1 shadow-lg
+            {/* Lingkaran Kiri (Logo M / Mood) */}
+            <div
+                style={{ left: "830px", top: "795px" }}
+                className="absolute pointer-events-auto"
+            >
+                <Mood />
+            </div>
+
+            {/* Input Tengah (Koordinat manual supaya pas di lubang TV) */}
+            <div
+                style={{ left: "210px", top: "840px" }}
+                className="absolute pointer-events-auto"
+            >
+                <div className="relative flex items-center">
+                    {/* Border Luar Input (untuk efek double border) */}
+                    <div className="absolute  bg-white border-[4px] border-[#BD202E] rounded-full px-2 py-1 shadow-lg
                                 left-[45px] top-[-35px]">
-                            <input
-                                type="text"
-                                placeholder="What U Ganna Do?.."
-                                value={text}
-                                onChange={handleChange}
-                                className="w-[374px] h-[60px]  border-[2px] border-[#BD202E]/10 rounded-full 
+                        <input
+                            type="text"
+                            placeholder="What U Ganna Do?.."
+                            value={text}
+                            onChange={(e) => { dispatch({ type: 'SET_INPUT', payload: e.target.value }) }}
+                            className="w-[374px] h-[60px]  border-[2px] border-[#BD202E]/10 rounded-full 
                                 px-8 text-2xl italic font-['Pixelify_Sans'] outline-none text-center text-red-900 placeholder-red-900/50"
-                            />
-                        </div>
+                        />
                     </div>
                 </div>
+            </div>
 
-                {/* Lingkaran Kanan (AddButton) */}
-                <div
-                    style={{ left: "-248px", bottom: "178px" }}
-                    className="absolute pointer-events-auto"
-                >
-                    <AddButton onClick={handleClick} />
-                </div>
-           
-        </>
+            {/* Lingkaran Kanan (AddButton) */}
+            <div
+                style={{ left: "830px", bottom: "78px" }}
+                className="absolute pointer-events-auto"
+            >
+                <AddButton  />
+            </div>
+
+        </form>
     )
 }
