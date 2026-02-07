@@ -6,7 +6,6 @@ import '@fontsource/pixelify-sans';
 import TodoApp from './Main/TodoApp';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     

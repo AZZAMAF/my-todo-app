@@ -1,7 +1,9 @@
 import { useContext, useState } from "react";
 import AddButton from "../Components/AddButton";
 import { TodoContext, TodoDispatchContext } from "./TodoContext";
-import Mood from "../Components/Mood";
+import Mood from "../Components/MoodButton";
+import AngryEmote from "../Components/Emote/AngryEmote";
+import MoodButton from "../Components/MoodButton";
 
 
 export default function Form() {
@@ -14,12 +16,16 @@ export default function Form() {
     function handleClick(e) {
         e.preventDefault()
 
-        if (!text || text.trim() === '') return;
-
-        dispatch({
+        if (!text || text.trim() === ''){
+          return  //alert('Woi isi bangsat')
+        } else{
+              dispatch({
             type: 'ADD_TODO',
             payload: text
         });
+        }
+
+      
     } 
     return (
         <form onSubmit={handleClick}>
@@ -32,7 +38,8 @@ export default function Form() {
                 style={{ left: "830px", top: "795px" }}
                 className="absolute pointer-events-auto"
             >
-                <Mood />
+                <AngryEmote/>
+                <MoodButton />
             </div>
 
             {/* Input Tengah (Koordinat manual supaya pas di lubang TV) */}
