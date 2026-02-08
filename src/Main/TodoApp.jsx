@@ -7,12 +7,16 @@ import Title from "../Components/Title";
 import TvFrame from "../Components/TvFrame";
 import ScreenTV from "../Components/ScreenTv";
 import Emote from "../Components/Emote";
+import { useState } from "react";
+
+import ManAsset from "../Components/IMG/Man/ManAsset";
 
 
 
 const initialState = {
     todos: [],
-    inputValue: ''
+    inputValue: '',
+    completed:false,
 };
 
 function todoReducer(draft, action) {
@@ -42,14 +46,16 @@ export default function TodoApp() {
 
 
     const [state, dispatch] = useImmerReducer(todoReducer, initialState)
+    const [currentMood, setCurrentMood] = useState('/IMG_TODO/EMOTE/Happy.png')
 
     return (
         <TodoContext.Provider value={state}>
             <TodoDispatchContext.Provider value={dispatch}>
-               
+            
                 <BGMain>
-                    <EmoteContext.Provider value={{Emote, dispatch}}>
-                        <Emote />
+                    <ManAsset/>
+                    <EmoteContext.Provider value={{currentMood, setCurrentMood}}>
+                        <Emote/>
                     
                     <div className="absolute  bottom-[-20px] z-10 w-[1038px] h-[982px] flex items-center justify-center origin-bottom transform scale-[1.0]">
 
@@ -62,10 +68,12 @@ export default function TodoApp() {
                         {/* 2. FRAME TV (Ukuran 1300-an px sesuai aset asli) */}
                         <TvFrame />
                         <div className="absolute inset-0 z-30 pointer-events-none">
+                            
                             <Form />
                         </div>
                     </div>
                     </EmoteContext.Provider>
+                    
                 </BGMain>
             </TodoDispatchContext.Provider>
         </TodoContext.Provider>

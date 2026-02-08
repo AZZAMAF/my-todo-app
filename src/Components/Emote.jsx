@@ -1,4 +1,9 @@
+
+import { useContext } from "react";
+import { EmoteContext } from "../Main/TodoContext";
+
 export default function Emote(){
+    const {currentMood} = useContext(EmoteContext)
 // Pisahkan style ke variabel biar JSX gak penuh
     const strokeStyle = {
         WebkitTextStroke: "10px #BD202E",
@@ -7,14 +12,27 @@ export default function Emote(){
     };
 
     return (
-        <h2
-            style={strokeStyle}
-            className="absolute top-[10%] left-[-20px] z-50 mt-[140px] -translate-x-1/2 
-                        font-['Pixelify_Sans'] text-[44px] italic leading-tight 
-                        text-white whitespace-nowrap"
-        >
-            My Mood:
-            {/* {Emote||""} */}
-        </h2>
+        /* Container utama yang mengatur posisi di layar */
+        <div className="absolute top-[1%] left-[-120px] z-50 mt-[140px] flex flex-col items-center gap-2">
+            
+            <h2
+                style={strokeStyle}
+                className="font-['Pixelify_Sans'] text-[44px] italic leading-tight 
+                text-white whitespace-nowrap"
+            >
+                My Mood:
+            </h2>
+
+            {/* Emote sekarang otomatis di bawah teks karena flex-col */}
+            
+                <div className="w-[150px] h-[150px] mt-2"> {/* Bungkus biar gampang atur ukuran */}
+                    <img 
+                        src={currentMood} 
+                        className=" w-full h-full object-contain width" 
+                        alt="current-mood" 
+                    />
+                </div>
+            
+        </div>
     );
 }

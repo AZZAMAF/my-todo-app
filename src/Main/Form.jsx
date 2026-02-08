@@ -1,8 +1,7 @@
 import { useContext, useState } from "react";
 import AddButton from "../Components/AddButton";
 import { TodoContext, TodoDispatchContext } from "./TodoContext";
-import Mood from "../Components/MoodButton";
-import AngryEmote from "../Components/Emote/AngryEmote";
+
 import MoodButton from "../Components/MoodButton";
 
 
@@ -19,13 +18,13 @@ export default function Form() {
         if (!text || text.trim() === ''){
           return  //alert('Woi isi bangsat')
         } else{
-              dispatch({
+            dispatch({
             type: 'ADD_TODO',
             payload: text
         });
         }
 
-      
+    
     } 
     return (
         <form onSubmit={handleClick}>
@@ -38,7 +37,7 @@ export default function Form() {
                 style={{ left: "830px", top: "795px" }}
                 className="absolute pointer-events-auto"
             >
-                <AngryEmote/>
+                
                 <MoodButton />
             </div>
 
