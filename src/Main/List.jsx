@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Todo from "./Todo";
 import { TodoContext } from "./TodoContext";
+import { AnimatePresence } from "framer-motion";
 
 export default function List() {
     const state = useContext(TodoContext);
@@ -17,10 +18,13 @@ export default function List() {
     }
 
     return (
-      <ul className="flex flex-col gap-4 p-2">
+        <AnimatePresence>
+ <ul className="flex flex-col gap-4 p-2">
             {state.todos.map(todo => (
-                <Todo key={todo.id} todo={todo} />
+                <Todo key={todo.id} todo={todo}  />
             ))}
         </ul>
+        </AnimatePresence>
+     
     );
 }

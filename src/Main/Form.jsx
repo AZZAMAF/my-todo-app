@@ -15,7 +15,7 @@ export default function Form() {
     function handleClick(e) {
         e.preventDefault()
 
-        if (!text || text.trim() === ''){
+        if (!text){
           return  //alert('Woi isi bangsat')
         } else{
             dispatch({
@@ -23,8 +23,6 @@ export default function Form() {
             payload: text
         });
         }
-
-    
     } 
     return (
         <form onSubmit={handleClick}>
@@ -44,19 +42,21 @@ export default function Form() {
             {/* Input Tengah (Koordinat manual supaya pas di lubang TV) */}
             <div
                 style={{ left: "210px", top: "840px" }}
-                className="absolute pointer-events-auto"
+                className="absolute pointer-events-auto "
             >
                 <div className="relative flex items-center">
                     {/* Border Luar Input (untuk efek double border) */}
                     <div className="absolute  bg-white border-[4px] border-[#BD202E] rounded-full px-2 py-1 shadow-lg
                                 left-[45px] top-[-35px]">
                         <input
+                            autoFocus
                             type="text"
                             placeholder="What U Ganna Do?.."
                             value={text}
                             onChange={(e) => { dispatch({ type: 'SET_INPUT', payload: e.target.value }) }}
                             className="w-[374px] h-[60px]  border-[2px] border-[#BD202E]/10 rounded-full 
-                                px-8 text-2xl italic font-['Pixelify_Sans'] outline-none text-center text-red-900 placeholder-red-900/50"
+                                px-8 text-2xl italic font-['Pixelify_Sans'] outline-none text-center text-red-900
+                                placeholder-red-900/50 "
                         />
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 
 import { useContext, useState } from "react"
-import { EmoteContext } from "../Main/TodoContext"
+import { EmoteContext, GenderContext } from "../Main/TodoContext"
 
 const ActionButton = ({ Image: img, label, onClick, isOpen, index }) => {
     return (
@@ -32,6 +32,7 @@ export default function MoodButton() {
     // const { isOpen, setIsopen } = useContext(EmoteContext)
     const [isOpen, setIsopen] = useState(false)
     const {setCurrentMood} = useContext(EmoteContext)
+    const {gender} = useContext(GenderContext)
     
 
     const Emotebutton = (imagePath) => {
@@ -60,10 +61,10 @@ export default function MoodButton() {
                         ))}
                         <button
                             onClick={() => setIsopen(!isOpen)}
-                            className=" absolute flex items-center justify-center w-[100px] h-[100px] 
-                        bg-sec-maroon rounded-full border-[6px] border-sec-maroon shadow-xl 
-                        flex-shrink-0 mr-[45px] right-[560px] top-[10px] hover:scale-105 *:transition-transform
-                        active:scale-95">
+                            className={`" absolute flex items-center justify-center w-[100px] h-[100px] 
+                            rounded-full border-[6px] shadow-xl flex-shrink-0 mr-[45px] right-[560px] top-[10px] hover:scale-105 
+                            *:transition-transform active:scale-95"
+                            ${gender === "man"? "bg-sec-maroon  border-sec-maroon" :"bg-sec-dark border-sec-dark" }`}>
                             <h1 className="text-white text-5xl font-['Pixelify_Sans'] leading-none">
                                 M
                             </h1>
