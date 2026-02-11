@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import AddButton from "../Components/AddButton";
-import { TodoContext, TodoDispatchContext } from "./TodoContext";
+import { GenderContext, TodoContext, TodoDispatchContext } from "./TodoContext";
 
 import MoodButton from "../Components/MoodButton";
 
@@ -9,6 +9,7 @@ export default function Form() {
 
     const dispatch = useContext(TodoDispatchContext)
     const state = useContext(TodoContext)
+    const {gender} = useContext(GenderContext)
 
     const text = state?.inputValue || "";
 
@@ -46,8 +47,9 @@ export default function Form() {
             >
                 <div className="relative flex items-center">
                     {/* Border Luar Input (untuk efek double border) */}
-                    <div className="absolute  bg-white border-[4px] border-[#BD202E] rounded-full px-2 py-1 shadow-lg
-                                left-[45px] top-[-35px]">
+                    <div className={`absolute  bg-white border-[4px]  rounded-full px-2 py-1 shadow-lg
+                                left-[45px] top-[-35px]
+                                ${gender === "man"? "border-[#BD202E]" :"border-sec-dark"}`}>
                         <input
                             autoFocus
                             type="text"

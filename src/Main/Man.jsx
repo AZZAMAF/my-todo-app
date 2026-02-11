@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import BGMain from "../Components/BGMain";
 import ManAsset from "../Components/IMG/Man/ManAsset";
-import { EmoteContext } from "./TodoContext";
+import { EmoteContext, GenderContext } from "./TodoContext";
 import Emote from "../Components/Emote";
 import Title from "../Components/Title";
 import List from "./List";
@@ -9,12 +9,14 @@ import TvFrame from "../Components/TvFrame";
 import ScreenTV from "../Components/ScreenTv";
 import Form from "./Form";
 import GenderToggle from "./toggle";
+import WomanAsset from "../Components/IMG/Woman/WomanAsset";
 
 export default function Man() {
     const [currentMood, setCurrentMood] = useState('/IMG_TODO/EMOTE/Happy.png')
+    const {gender} = useContext(GenderContext)
     return (
         <BGMain>
-            <ManAsset />
+            {gender === "man" ?<ManAsset /> :<WomanAsset/> }
             <EmoteContext.Provider value={{ currentMood, setCurrentMood }}>
                 <Emote />
 

@@ -3,8 +3,9 @@ import { motion } from "motion/react";
 import { GenderContext } from "./TodoContext";
 
 export default function GenderToggle() {
-    const [isWoman, setIsWoman] = useState(false);
+    
     const { gender, handleSwitchGender } = useContext(GenderContext);
+    const isWoman = gender === "woman";
     return (
         <div onClick={handleSwitchGender} className="absolute top-[145px] right-[-100px] w-[150px] h-[350px] font-['Pixelify_Sans'] uppercase">
 
